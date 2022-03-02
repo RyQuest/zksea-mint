@@ -87,7 +87,7 @@ function App() {
     console.log("address", address);
 
     if (address == null) {
-      toast.error("Please switch to ropsten network", {
+      toast.error("Please switch to rinkeby network", {
         position: "top-center",
       });
     } else {
