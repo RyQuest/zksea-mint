@@ -88,7 +88,7 @@ function App() {
 
     if (address == null) {
       toast.error("Please switch to rinkeby network", {
-        position: "top-center",
+        position: "bottom-center",
       });
     } else {
       dispatch(
@@ -120,7 +120,7 @@ function App() {
 
       if (txr == false) {
         toast.error("Something went wrong!", {
-          position: "top-center",
+          position: "bottom-center",
         });
       } else {
         let res = await axios.post(url, {
@@ -133,7 +133,7 @@ function App() {
         setloading(false);
 
         toast("Transation successful", {
-          position: "top-center",
+          position: "bottom-center",
         });
       }
     } else {
@@ -144,7 +144,9 @@ function App() {
   return (
     <>
       <ToastContainer />
+     
       <div className="header">
+
         {loading && (
           <div className="text-center">
             <div className="spinner-border text-white"></div>

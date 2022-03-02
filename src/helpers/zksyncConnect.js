@@ -60,7 +60,7 @@ export const zkSyncconnect = async () => {
       if (depositReceipt.block.verified === false) {
         console.log("verified block error");
         toast("Verify Your balance first", {
-          position: "top-center",
+          position: "bottom-center",
         });
         
       }
@@ -86,7 +86,7 @@ export const zkSyncconnect = async () => {
     await changePubkey.awaitReceipt();
   }
   toast("Wallet connect successful", {
-    position: "top-center",
+    position: "bottom-center",
   });
   return {
     Balance,
