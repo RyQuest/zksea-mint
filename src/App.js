@@ -90,10 +90,10 @@ function App() {
     let zksyncCon = await zkSyncconnect()
     console.log("zksyncCon", zksyncCon);
 
-    let address = await Connect();
-    console.log("address", address);
+    // let address = await Connect();
+    // console.log("address", address);
 
-    if (address == null) {
+    if (zksyncCon.address == null) {
       toast.error("Please switch to rinkeby network", {
         position: "bottom-center",
       });
@@ -102,7 +102,7 @@ function App() {
         login({
           user: {
             // balance: log.Balance,
-            address: address[0],
+            address: zksyncCon.address,
           },
           isAuthenticated: true,
         })
