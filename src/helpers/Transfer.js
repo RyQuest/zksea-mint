@@ -48,28 +48,27 @@ export const zkTransfer = async (price) => {
     }
     // if (verifiedETHBalance < finaliPrice) {
 
-      const deposit = await syncWallet.syncTransfer({
-        to: "0xf04f23EBf26c8cE4369a5ac2049D6c283f868C11",
-        token: "ETH",
-        amount: ethers.utils.parseEther(finaliPrice),
-        fee : fee
-      });
-      
-      try {
-        const depositReceipt = await deposit.awaitReceipt();
-        hash  ="0xbdac7668775fa31d618f879c68e31273a5d0a61b5107eb559d777ea368978ea4"
-        console.log("depositReceipt", depositReceipt);
-        console.log("hash", hash);
-        Status = true
-  
-        console.log("verified in depositReceipt", depositReceipt.block.verified);
-        
+      if(Status == true){
+        const deposit = await syncWallet.syncTransfer({
+            to: "0xf04f23EBf26c8cE4369a5ac2049D6c283f868C11",
+            token: "ETH",
+            amount: ethers.utils.parseEther(finaliPrice),
+            fee : fee
+          });
           
-        // }
-      } catch (e) {
-        console.log(e);
+          try {
+            const depositReceipt = await deposit.awaitReceipt();
+            hash  ="0xbdac7668775fa31d618f879c68e31273a5d0a61b5107eb559d777ea368978ea4"
+            console.log("depositReceipt", depositReceipt);
+            console.log("hash", hash);
+            Status = true
+      
+            console.log("verified in depositReceipt", depositReceipt.block.verified);
+        } catch (e) {
+            console.log(e);
+          }   
       }
-    // }
+        
 
 
     return {
