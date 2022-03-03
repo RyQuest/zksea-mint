@@ -5,7 +5,7 @@ const bs58 = require("bs58");
 var Buffer = require("buffer/").Buffer;
 
 export const zkTransfer = async (price) => {
-    let Status = false
+    let Status = true
     let hash = ""
     console.log("wallet connect");
     await window.ethereum.enable();
