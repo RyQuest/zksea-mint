@@ -17,14 +17,14 @@ export const Mint= async(hash)=>{
     
     const syncWallet = await zksync.Wallet.fromEthSigner(signer, syncProvider);
 
-    console.log("syncWallet",syncWallet);
+    // console.log("syncWallet",syncWallet);
     
     const address = syncWallet.address();
     
-    console.log("address",address);
+    // console.log("address",address);
 
     const nonce = await syncWallet.getNonce()
-     console.log("address",address);
+    //  console.log("address",address);
     
     const verifiedETHBalance = await syncWallet.getBalance("ETH", "verified");
     
