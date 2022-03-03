@@ -88,6 +88,10 @@ export const Mint= async(hash)=>{
     // const fee = ethers.utils.parseEther("0.001");
     console.log('ipfs hash',hash)
     hash=hash.toString();
+    hash = hash.replace(
+      "https://gateway.ipfs.io/ipfs/",
+      ""
+    );
     console.log('ipfs hash',hash)
 
     const bytes = Buffer.from(hash, 'hex')

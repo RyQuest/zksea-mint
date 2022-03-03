@@ -43,7 +43,7 @@ export const zkTransfer = async (price) => {
     if(Balance < (finaliPrice + fee)){
         toast.error("Insufficient funds", {
             position: "bottom-center",
-            });
+        });
             Status = false
     }
     // if (verifiedETHBalance < finaliPrice) {
