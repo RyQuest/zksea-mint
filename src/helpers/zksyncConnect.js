@@ -52,11 +52,12 @@ export const zkSyncconnect = async () => {
   // let finaliPrice = price.toString();
   // console.log(typeof finaliPrice);
 
+  let TempBalCheck = "0.01"
   let finaliPrice= "0.1"
   // finaliPrice = parseFloat(finaliPrice)
 
-  if (verifiedETHBalance < finaliPrice) {
-    toast("You do not have sufficient funds, please deposit amount to activate zksync", {
+  if (verifiedETHBalance < TempBalCheck) {
+    toast("You do not have sufficient funds, please deposit amount to activate zksync account", {
       position: "bottom-center",
     });
     const deposit = await syncWallet.depositToSyncFromEthereum({
