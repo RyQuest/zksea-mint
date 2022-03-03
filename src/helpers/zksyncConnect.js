@@ -52,7 +52,7 @@ export const zkSyncconnect = async () => {
   // let finaliPrice = price.toString();
   // console.log(typeof finaliPrice);
 
-  let finaliPrice= "0.001"
+  let finaliPrice= "0.1"
   // finaliPrice = parseFloat(finaliPrice)
 
   if (verifiedETHBalance < finaliPrice) {
