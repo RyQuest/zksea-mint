@@ -6,6 +6,7 @@ var Buffer = require("buffer/").Buffer;
 
 export const zkSyncconnect = async () => {
   let depositStatus = false
+  let chaindIdStatus = true
   console.log("wallet connect");
   await window.ethereum.enable();
 
@@ -14,6 +15,16 @@ export const zkSyncconnect = async () => {
   const signer = provider.getSigner();
 
   console.log("signer", signer);
+
+  const chain = await provider.getNetwork()
+  console.log("chain", chain.chainId);
+
+  if(chain.chainId != 4){
+    console.log("not match");
+    toast.error("Please select rinkeby network", {
+      position: "bottom-center",
+  });
+  }
 
   const syncProvider = await zksync.getDefaultProvider("rinkeby");
 
