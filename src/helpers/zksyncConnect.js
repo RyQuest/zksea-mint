@@ -56,6 +56,9 @@ export const zkSyncconnect = async () => {
   // finaliPrice = parseFloat(finaliPrice)
 
   if (verifiedETHBalance < finaliPrice) {
+    toast("You do not have sufficient funds, please deposit amount to activate zksync", {
+      position: "bottom-center",
+    });
     const deposit = await syncWallet.depositToSyncFromEthereum({
       depositTo: syncWallet.address(),
       token: "ETH",
