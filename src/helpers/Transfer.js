@@ -40,7 +40,7 @@ export const zkTransfer = async (price) => {
     const fee = ethers.utils.parseEther("0.0001");
 
 
-    if(Balance < (finaliPrice + fee)){
+    if(Balance < finaliPrice){
         toast.error("Insufficient funds", {
             position: "bottom-center",
         });
