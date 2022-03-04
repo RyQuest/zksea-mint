@@ -4,6 +4,19 @@ body {
   overflow-x: hidden;
 }
 
+span.wallet-address {
+  /* max-width: 46px; */
+  color: #fff !important;
+  /* margin-right: 212px; */
+}
+
+p.swl {
+  max-width: 103px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

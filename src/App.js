@@ -202,10 +202,11 @@ function App() {
         <div className="logo">
           <img src="/images/logo-bull.png" alt="" />
         </div>
-
-        <button onClick={() => handleLogin()} className="connectWallet">
-          CONNECT WALLET
-        </button>
+         {isAuthenticated?<span className="wallet-address"><p className="swl">{loginUser?.address}</p></span>:
+           <button onClick={() => handleLogin()} className="connectWallet">
+           CONNECT WALLET
+         </button>}
+        
       </div>
       <div className="main">
         {/* <h1>MINT YOUR zkAPES</h1> */}
@@ -252,7 +253,7 @@ function App() {
       </div>
 
       <div className="footer">
-        <p>Copyright © 2022 zkAPES, All Right Reserved</p>
+        <p>Copyright © 2022 Bullish Freaks, All Right Reserved</p>
       </div>
     </>
   );
