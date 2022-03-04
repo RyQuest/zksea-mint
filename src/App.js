@@ -25,10 +25,10 @@ function App() {
   const loginUser = useSelector((state) => state.auth.value.user);
 
   function inc() {
-    if (counter < 5) {
+    if (counter < 10) {
       setcounter(counter + 1);
     } else {
-      setcounter(5);
+      setcounter(10);
     }
 
     if (ethPrice === 0) {
@@ -49,6 +49,23 @@ function App() {
 
     if (counter === 4) {
       setethPrice(".345");
+    }
+
+    if (counter === 5) {
+      setethPrice(".414");
+    }
+
+    if (counter === 6) {
+      setethPrice(".483");
+    }
+    if (counter === 7) {
+      setethPrice(".552");
+    }
+    if (counter === 8) {
+      setethPrice(".621");
+    }
+    if (counter === 9) {
+      setethPrice(".69");
     }
   }
 
@@ -78,11 +95,27 @@ function App() {
     if (ethPrice === ".069") {
       setethPrice(0);
     }
+
+    if (ethPrice === ".69") {
+      setethPrice(".621");
+     }
+
+     if (ethPrice === ".621") {
+      setethPrice(".552");
+     }
+
+     if (ethPrice === ".552") {
+      setethPrice(".483");
+     }
+
+     if (ethPrice === ".483") {
+      setethPrice(".414");
+     }
   }
 
   function max() {
-    setcounter(5);
-    setethPrice(".345");
+    setcounter(10);
+    setethPrice(".69");
   }
 
   const handleLogin = async () => {
