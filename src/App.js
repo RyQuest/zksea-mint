@@ -111,6 +111,10 @@ function App() {
      if (ethPrice === ".483") {
       setethPrice(".414");
      }
+
+     if (ethPrice === ".414") {
+      setethPrice(".345");
+     }
   }
 
   function max() {
