@@ -152,70 +152,50 @@ function App() {
   const handleBuy = async () => {
     if (isAuthenticated) {
       let price = parseFloat(ethPrice);
-      setloading(true);
-      let transfer = await zkTransfer(price)
-      console.log("transfer", transfer);
-
-        if(transfer.Status == true){
-
-          // successfull transfer now mint
-          let res = await axios.post(url, {
-              address: loginUser.address,
-              price: price,
-              hash: transfer.hash,
-          });
-          console.log("res", res);
-
-          console.log("ipfs", res.data.ipfs_hash);
-          console.log("contentid", res.data._id);
-
-
-          let mintNFT = await Mint(res.data.ipfs_hash)
-          console.log("mintNFT", mintNFT);
-
-          let setToken = await axios.post("http://52.14.90.31:3001/set-tokenId", {
-            tokenId: mintNFT.NftToken,
-            contentId: res.data._id,
-          });
-          console.log("setToken", setToken);
-
-          toast("Transaction Successful", {
-            position: "bottom-center",
-          });
-         
-        }else{
-          toast.error("Transaction Unsuccessful", {
-            position: "bottom-center",
-          });
-        }
-      // let price = parseFloat(ethPrice);
-      // let tx = {
-      //   from: loginUser.address,
-      //   to: "0x15C989EC8d1b4AF23894900a624889B33d0Dc645",
-      //   gas: 500000,
-      //   value: "0x" + (price * 1000000000000000000).toString(16),
-      // };
-      // let txr = await Transaction(tx);
-      // console.log("txr", txr);
-
-      // if (txr == false) {
-      //   toast.error("Something went wrong!", {
-      //     position: "bottom-center",
-      //   });
-      // } else {
-      //   let res = await axios.post(url, {
-      //     address: loginUser.address,
-      //     price: price,
-      //     hash: txr.transactionHash,
-      //   });
-      //   console.log("res", res);
-
-      //   setloading(false);
-
-      //   toast("Transation successful", {
-      //     position: "bottom-center",
-      //   });
-      // }
+      if(price == 0){
+        toast.error("Amount cannot be zero", {
+          position: "bottom-center",
+        });
+      }
+      else{
+        setloading(true);
+        let transfer = await zkTransfer(price)
+        console.log("transfer", transfer);
+  
+          if(transfer.Status == true){
+  
+            // successfull transfer now mint
+            let res = await axios.post(url, {
+                address: loginUser.address,
+                price: price,
+                hash: transfer.hash,
+            });
+            console.log("res", res);
+  
+            console.log("ipfs", res.data.ipfs_hash);
+            console.log("contentid", res.data._id);
+  
+  
+            let mintNFT = await Mint(res.data.ipfs_hash)
+            console.log("mintNFT", mintNFT);
+  
+            let setToken = await axios.post("http://52.14.90.31:3001/set-tokenId", {
+              tokenId: mintNFT.NftToken,
+              contentId: res.data._id,
+            });
+            console.log("setToken", setToken);
+  
+            toast("Transaction Successful", {
+              position: "bottom-center",
+            });
+            setloading(false);
+           
+          }else{
+            toast.error("Transaction Unsuccessful", {
+              position: "bottom-center",
+            });
+          }
+      }
     }
      else {
       toast.error("Please connect wallet", {
@@ -239,7 +219,7 @@ function App() {
         <div className="logo">
           <img src="/images/logo-bull.png" alt="" />
         </div>
-         {isAuthenticated?<span className="wallet-address"><p className="swl">{loginUser?.address}</p></span>:
+         {isAuthenticated?<span className="wallet-address"><p className="swl">{loginUser?.address.substring(0, 5)+"....."+loginUser?.address.substring(38, 42)}</p></span>:
            <button onClick={() => handleLogin()} className="connectWallet">
            CONNECT WALLET
          </button>}
@@ -279,7 +259,8 @@ function App() {
             </div>
 
             <div className="cardFlex1 mainBTN">
-              <button onClick={handleBuy}>Mint Now</button>
+            {loading?<button>Processing</button>: <button onClick={handleBuy}>Mint Now</button>}
+              {/* <button onClick={handleBuy}>Mint Now</button> */}
             </div>
           </div>
         </div>

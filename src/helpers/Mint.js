@@ -1,17 +1,25 @@
 import * as zksync from "zksync";
 import * as ethers from "ethers";
+import { toast } from "react-toastify";
+import { web3 } from "./Web3Helper"
+
 const bs58 = require('bs58')
 var Buffer = require('buffer/').Buffer;
 
+
 export const Mint= async(hash)=>{
 
-    await window.ethereum.enable()
+    await web3()
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const signer = provider.getSigner();
 
     console.log("signer",signer);
+
+    toast("Verifying Account", {
+      position: "bottom-center",
+    });
 
     const syncProvider = await zksync.getDefaultProvider("rinkeby");
     
@@ -99,6 +107,10 @@ export const Mint= async(hash)=>{
     //ethers.utils.formatBytes32String(hash) //"0xbd7289936758c562235a3a42ba2c4a56cbb23a263bb8f8d27aead80d74d9d996";
     let contentHash  = "0x"+bs58.decode(hash).slice(2).toString('hex')
     console.log('hash',contentHash)
+
+    toast("Minting NFT", {
+      position: "bottom-center",
+    });
 
     const mint =  syncWallet.mintNFT({
       recipient: syncWallet.address(),

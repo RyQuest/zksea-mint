@@ -1,5 +1,7 @@
 import * as zksync from "zksync";
 import * as ethers from "ethers";
+import { web3 } from "./Web3Helper"
+
 import { toast } from "react-toastify";
 const bs58 = require("bs58");
 var Buffer = require("buffer/").Buffer;
@@ -8,13 +10,11 @@ export const zkSyncconnect = async () => {
   let depositStatus = false
   let chaindIdStatus = true
   console.log("wallet connect");
-  await window.ethereum.enable();
+  await web3()
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
 
   const signer = provider.getSigner();
-
-  console.log("signer", signer);
 
   const chain = await provider.getNetwork()
   console.log("chain", chain.chainId);
@@ -25,6 +25,14 @@ export const zkSyncconnect = async () => {
       position: "bottom-center",
   });
   }
+  
+  console.log("signer", signer);
+
+  toast("Verifying Account", {
+    position: "bottom-center",
+  });
+
+  
 
   const syncProvider = await zksync.getDefaultProvider("rinkeby");
 
@@ -83,6 +91,10 @@ export const zkSyncconnect = async () => {
       console.log(e);
     }
   }
+
+  toast("Authenticating", {
+    position: "bottom-center",
+  });
   
   try {
     const changePubkey = await syncWallet.setSigningKey({
