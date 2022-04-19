@@ -25,16 +25,16 @@ function App() {
   const loginUser = useSelector((state) => state.auth.value.user);
 
   function inc() {
-    if (counter < 10) {
+    if (counter < 1) {
       setcounter(counter + 1);
     } else {
-      setcounter(10);
+      setcounter(1);
     }
 
     if (ethPrice === 0) {
-      setethPrice(".069");
+      setethPrice("0");
     }
-
+ 
     if (ethPrice === ".069") {
       setethPrice(".138");
     }
@@ -118,20 +118,21 @@ function App() {
   }
 
   function max() {
-    setcounter(10);
-    setethPrice(".69");
+    setcounter(1);
+    setethPrice(0);
   }
 
   const handleLogin = async () => {
 
     let zksyncCon = await zkSyncconnect()
+
     console.log("zksyncCon", zksyncCon);
 
     // let address = await Connect();
     // console.log("address", address);
 
     if (zksyncCon.address == null) {
-      toast.error("Please switch to rinkeby network", {
+      toast.error("Please switch to Ethereum Mainnet", {
         position: "bottom-center",
       });
     } else {
@@ -152,23 +153,24 @@ function App() {
   const handleBuy = async () => {
     if (isAuthenticated) {
       let price = parseFloat(ethPrice);
-      if(price == 0){
+      if(price != 0){
         toast.error("Amount cannot be zero", {
           position: "bottom-center",
         });
       }
       else{
+       
         setloading(true);
-        let transfer = await zkTransfer(price)
-        console.log("transfer", transfer);
-  
-          if(transfer.Status == true){
+       // let transfer = await zkTransfer(price)
+       // console.log("transfer", transfer);
+          const rstatus=true;
+          if(rstatus == true){
   
             // successfull transfer now mint
             let res = await axios.post(url, {
                 address: loginUser.address,
                 price: price,
-                hash: transfer.hash,
+                hash: "free",
             });
             console.log("res", res);
   

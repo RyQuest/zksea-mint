@@ -19,9 +19,9 @@ export const zkSyncconnect = async () => {
   const chain = await provider.getNetwork()
   console.log("chain", chain.chainId);
 
-  if(chain.chainId != 4){
+  if(chain.chainId != 1){
     console.log("not match");
-    toast.error("Please select rinkeby network", {
+    toast.error("Please select Ethereum Mainnet", {
       position: "bottom-center",
   });
   }
@@ -34,7 +34,7 @@ export const zkSyncconnect = async () => {
 
   
 
-  const syncProvider = await zksync.getDefaultProvider("rinkeby");
+  const syncProvider = await zksync.getDefaultProvider("mainnet");
 
   const syncWallet = await zksync.Wallet.fromEthSigner(signer, syncProvider);
 

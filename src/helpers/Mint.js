@@ -21,7 +21,7 @@ export const Mint= async(hash)=>{
       position: "bottom-center",
     });
 
-    const syncProvider = await zksync.getDefaultProvider("rinkeby");
+    const syncProvider = await zksync.getDefaultProvider("mainnet");
     
     const syncWallet = await zksync.Wallet.fromEthSigner(signer, syncProvider);
 
