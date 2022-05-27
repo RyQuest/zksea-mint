@@ -48,7 +48,7 @@ export const Mint= async(hash)=>{
       const deposit = await syncWallet.depositToSyncFromEthereum({
         depositTo: syncWallet.address(),
         token: "ETH",
-        amount: ethers.utils.parseEther("0.01"),
+        amount: ethers.utils.parseEther("0.001"),
       });
       
       try{

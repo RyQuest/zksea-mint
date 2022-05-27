@@ -61,7 +61,8 @@ export const zkSyncconnect = async () => {
   // console.log(typeof finaliPrice);
 
   let TempBalCheck = "0.01"
-  let finaliPrice= "0.1"
+  
+  let finaliPrice= "0.001"
   // finaliPrice = parseFloat(finaliPrice)
 
   if (verifiedETHBalance < TempBalCheck) {
