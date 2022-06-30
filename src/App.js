@@ -9,7 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { Mint } from "./helpers/Mint";
 
-const url = "http://52.14.90.31:3001/random-NFT";
+const url = "https://api.zksea.xyz/random-NFT";
 function App() {
   const [counter, setcounter] = useState(0);
 
@@ -159,6 +159,17 @@ function App() {
         });
       }
       else{
+        let checkalletres = await axios.post("https://api.zksea.xyz/check-wallet", {
+          wallet_address: loginUser.address,
+      });
+
+      console.log("checkalletres", checkalletres);
+      if(checkalletres.data.status == false){
+        toast.error(checkalletres.data.message, {
+          position: "right-center",
+        });
+        return
+      }
        
         setloading(true);
        // let transfer = await zkTransfer(price)
@@ -181,7 +192,7 @@ function App() {
             let mintNFT = await Mint(res.data.ipfs_hash)
             console.log("mintNFT", mintNFT);
   
-            let setToken = await axios.post("http://52.14.90.31:3001/set-tokenId", {
+            let setToken = await axios.post("https://api.zksea.xyz//set-tokenId", {
               tokenId: mintNFT.NftToken,
               contentId: res.data._id,
             });
